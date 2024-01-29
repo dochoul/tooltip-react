@@ -4,7 +4,18 @@ import Tooltip from "./components/ui/Tooltip";
 function App() {
   return (
     <div className="App">
-      <h1 style={{ textAlign: "center" }}>내가 필요해서 만든 툴팁</h1>
+      <div style={{ textAlign: "center" }}>
+        <h1>내가 필요해서 만든 툴팁</h1>
+        <a
+          className="gihub"
+          href="https://github.com/dochoul/tooltip-react"
+          target="_blank"
+          title="새창"
+          rel="noreferrer"
+        >
+          (https://github.com/dochoul/tooltip-react)
+        </a>
+      </div>
       <h2 className="anchor">Default</h2>
       <div className="gt-panel">
         <div className="gt-panel-header">
