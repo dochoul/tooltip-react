@@ -11,11 +11,11 @@ interface Props {
 }
 
 export default function Tooltip({
-  label,
-  position,
-  color,
-  fontSize,
-  background,
+  label = "",
+  position = "top",
+  color = "#fff",
+  fontSize = "12px",
+  background = "#585858",
   children,
 }: Props) {
   const makeTT = (
@@ -56,8 +56,8 @@ export default function Tooltip({
   };
 
   /* 꼬다리 만들기 */
-  const makeCaret = (caret: any, placement: any, bgColor: any) => {
-    switch (placement) {
+  const makeCaret = (caret: HTMLElement, position: string, bgColor: string) => {
+    switch (position) {
       case "left":
         caret.style.borderWidth = "6px 0px 6px 6px";
         caret.style.borderLeftColor = bgColor;
@@ -107,10 +107,7 @@ export default function Tooltip({
   };
 
   /* 방향에 따라 툴팁 위치 변경 */
-  const setPosition = (ttBtn: any, tt: any) => {
-    let placement;
-    let bg;
-    let fontColor;
+  const setPosition = (ttBtn: HTMLElement, tt: HTMLElement) => {
     let size;
     let ttBtnW;
     let ttBtnH;
@@ -123,22 +120,21 @@ export default function Tooltip({
     let caretH;
     let offset = 10;
 
-    //* 툴팁 방향 가져오기
-    placement = position;
+    //* Caret(꼬다리)
+    caret = makeCaret(
+      tt.querySelector(".gt-tooltip-caret")!,
+      position,
+      background
+    );
 
+    //* 툴팁 폰트 컬러 변경
+    tt.style.color = color;
+
+    //* 툴팁 폰트 사이즈 변경
     size = fontSize;
 
     //* 툴팁 배경 컬러 변경
-    bg = background;
-    if (bg === null || bg === undefined) bg = "#585858";
-    tt.style.background = bg;
-
-    //* Caret(꼬다리)
-    caret = makeCaret(tt.querySelector(".gt-tooltip-caret"), placement, bg);
-
-    //* 툴팁 폰트 컬러 변경
-    fontColor = color;
-    tt.style.color = fontColor;
+    tt.style.background = background;
 
     //* 툴팁 폰트 크기 변경
     tt.style.fontSize = size;
@@ -156,7 +152,7 @@ export default function Tooltip({
     caretH = Math.ceil(caret.offsetHeight);
 
     // 방향에 따른 툴팁 위치 조정
-    switch (placement) {
+    switch (position) {
       case "left":
         tt.style.left = ttBtnL - ttW - offset + "px";
         tt.style.top = ttBtnT + (ttBtnH - ttH) / 2 + "px";
