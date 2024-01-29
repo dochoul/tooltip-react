@@ -1,0 +1,153 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body,
+button {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.App {
+  padding: 50px 5%;
+}
+
+h2 {
+  position: relative;
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 65px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  line-height: 44px;
+  border-bottom: 1px solid #ddd;
+  &:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    content: "";
+    bottom: -1px;
+    height: 1px;
+    width: 100px;
+    background-color: #aaa;
+  }
+  &:first-child {
+    margin-top: 0;
+  }
+}
+/* panel */
+.gt-panel {
+  margin: 30px 0 20px;
+  border: 0;
+  border-radius: 3px;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+.gt-panel .gt-panel-header {
+  height: 38px;
+  padding: 0;
+  border-top: 1px solid #eaeae9;
+  border-bottom: 1px solid #dfdfde;
+  background: #ebebeb;
+}
+.gt-panel .gt-panel-body {
+  padding: 16px;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.gt-panel .gt-panel-header .circles {
+  margin: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0px 10px;
+  height: 38px;
+}
+.gt-panel .gt-panel-header .circles .circle {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.gt-panel .gt-panel-header .circles .circle-red {
+  background-color: #fc615c;
+  border-color: #fd504a;
+}
+.gt-panel .gt-panel-header .circles .circle-yellow {
+  background-color: #fec041;
+  border-color: #f0b542;
+}
+.gt-panel .gt-panel-header .circles .circle-green {
+  background-color: #33c849;
+  border-color: #1bc634;
+}
+/* Button */
+.gt-button {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 8px 20px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  background-color: #eee;
+  transition: background-color 0.15s ease-in-out;
+  cursor: pointer;
+  &.gt-button-primary {
+    color: #fff;
+    background-color: #2985db;
+  }
+  &.gt-button-secondary {
+    color: #fff;
+    background-color: #999;
+  }
+  &.gt-button-success {
+    color: #fff;
+    background-color: #7eac05;
+  }
+  &.gt-button-danger {
+    color: #fff;
+    background-color: #e75113;
+  }
+}
