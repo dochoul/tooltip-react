@@ -47,7 +47,7 @@ export default function Tooltip({
 
   const removeTT = () => {
     if (document.querySelector(".gt-tooltip")) {
-      let tt: any = document.body.querySelector(".gt-tooltip");
+      let tt: HTMLDivElement = document.body.querySelector(".gt-tooltip")!;
       tt.classList.add("gt-tooltip-hide");
       tt.addEventListener("animationend", () => {
         document.body.removeChild(document.body.querySelector(".gt-tooltip")!);
@@ -57,6 +57,9 @@ export default function Tooltip({
 
   /* 꼬다리 만들기 */
   const makeCaret = (caret: HTMLElement, position: string, bgColor: string) => {
+    const hasDash = position.includes("-");
+    if (hasDash) position = position.substring(0, position.indexOf("-"));
+
     switch (position) {
       case "left":
         caret.style.borderWidth = "6px 0px 6px 6px";
@@ -73,27 +76,7 @@ export default function Tooltip({
         caret.style.borderTopColor = bgColor;
         break;
 
-      case "top-start":
-        caret.style.borderWidth = "6px 6px 0px 6px";
-        caret.style.borderTopColor = bgColor;
-        break;
-
-      case "top-end":
-        caret.style.borderWidth = "6px 6px 0px 6px";
-        caret.style.borderTopColor = bgColor;
-        break;
-
       case "bottom":
-        caret.style.borderWidth = "0px 6px 6px 6px";
-        caret.style.borderBottomColor = bgColor;
-        break;
-
-      case "bottom-start":
-        caret.style.borderWidth = "0px 6px 6px 6px";
-        caret.style.borderBottomColor = bgColor;
-        break;
-
-      case "bottom-end":
         caret.style.borderWidth = "0px 6px 6px 6px";
         caret.style.borderBottomColor = bgColor;
         break;
@@ -153,6 +136,7 @@ export default function Tooltip({
 
     // 방향에 따른 툴팁 위치 조정
     switch (position) {
+      //* 완쪽 방향 툴팁들
       case "left":
         tt.style.left = ttBtnL - ttW - offset + "px";
         tt.style.top = ttBtnT + (ttBtnH - ttH) / 2 + "px";
@@ -161,6 +145,24 @@ export default function Tooltip({
         tt.classList.add("gt-transform-origin-center-right"); // The transform-origin CSS property sets the origin for an element's transformations.(https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
         break;
 
+      case "left-start":
+        tt.style.left = ttBtnL - ttW - offset + "px";
+        tt.style.top = ttBtnT + "px";
+        caret.style.left = ttW + "px";
+        caret.style.top = ttH / 2 - caretH / 2 + "px";
+        tt.classList.add("gt-transform-origin-center-right");
+        break;
+
+      case "left-end":
+        tt.style.left = ttBtnL - ttW - offset + "px";
+        tt.style.top = ttBtnT + (ttBtnH - ttH) + "px";
+        caret.style.left = ttW + "px";
+        caret.style.top = ttH / 2 - caretH / 2 + "px";
+        tt.classList.add("gt-transform-origin-center-right");
+        break;
+      //* (END)완쪽 방향 툴팁들
+
+      //* 오른쪽 방향 툴팁들
       case "right":
         tt.style.left = ttBtnL + ttBtnW + offset + "px";
         tt.style.top = ttBtnT + (ttBtnH - ttH) / 2 + "px";
@@ -169,12 +171,55 @@ export default function Tooltip({
         tt.classList.add("gt-transform-origin-center-left");
         break;
 
+      case "right-start":
+        tt.style.left = ttBtnL + ttBtnW + offset + "px";
+        tt.style.top = ttBtnT + "px";
+        caret.style.left = -caretW + "px";
+        caret.style.top = ttH / 2 - caretH / 2 + "px";
+        tt.classList.add("gt-transform-origin-center-left");
+        break;
+
+      case "right-end":
+        tt.style.left = ttBtnL + ttBtnW + offset + "px";
+        tt.style.top = ttBtnT + (ttBtnH - ttH) + "px";
+        caret.style.left = -caretW + "px";
+        caret.style.top = ttH / 2 - caretH / 2 + "px";
+        tt.classList.add("gt-transform-origin-center-left");
+        break;
+
+      //* 아래쪽 방향 툴팁들
       case "bottom":
         tt.style.left = ttBtnL + (ttBtnW - ttW) / 2 + "px";
         tt.style.top = ttBtnT + ttBtnH + offset + "px";
         caret.style.left = ttW / 2 - caretW / 2 + "px";
         caret.style.top = -caretH + "px";
         tt.classList.add("gt-transform-origin-top-center");
+        break;
+
+      case "bottom-start":
+        tt.style.left = ttBtnL + "px";
+        tt.style.top = ttBtnT + ttBtnH + offset + "px";
+        caret.style.left = ttW / 2 - caretW / 2 + "px";
+        caret.style.top = -caretH + "px";
+        tt.classList.add("gt-transform-origin-top-center");
+        break;
+
+      case "bottom-end":
+        tt.style.left = ttBtnL + Math.abs(ttBtnW - ttW) + "px";
+        tt.style.top = ttBtnT + ttBtnH + offset + "px";
+        caret.style.left = ttW / 2 - caretW / 2 + "px";
+        caret.style.top = -caretH + "px";
+        tt.classList.add("gt-transform-origin-top-center");
+        break;
+      //* (END)아래쪽 방향 툴팁들
+
+      //* 위쪽 방향 툴팁들
+      case "top":
+        tt.style.left = ttBtnL + (ttBtnW - ttW) / 2 + "px";
+        tt.style.top = ttBtnT - ttH - offset + "px";
+        caret.style.left = ttW / 2 - caretW / 2 + "px";
+        caret.style.top = `${ttH}px`;
+        tt.classList.add("gt-transform-origin-bottom-center");
         break;
 
       case "top-start":
@@ -190,32 +235,9 @@ export default function Tooltip({
         tt.style.top = ttBtnT - ttH - offset + "px";
         caret.style.left = ttW / 2 - caretW / 2 + "px";
         caret.style.top = ttH + "px";
-        tt.classList.add("gt-transform-origin-bottom-right");
-        break;
-
-      case "bottom-start":
-        tt.style.left = ttBtnL + "px";
-        tt.style.top = ttBtnT + ttBtnH + offset + "px";
-        caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = -caretH + "px";
-        tt.classList.add("gt-transform-origin-top-left");
-        break;
-
-      case "bottom-end":
-        tt.style.left = ttBtnL + Math.abs(ttBtnW - ttW) + "px";
-        tt.style.top = ttBtnT + ttBtnH + offset + "px";
-        caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = -caretH + "px";
-        tt.classList.add("gt-transform-origin-top-right");
-        break;
-
-      case "top":
-        tt.style.left = ttBtnL + (ttBtnW - ttW) / 2 + "px";
-        tt.style.top = ttBtnT - ttH - offset + "px";
-        caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = ttH + "px";
         tt.classList.add("gt-transform-origin-bottom-center");
         break;
+      //* (END)위쪽 방향 툴팁들
 
       default:
         tt.style.left = ttBtnL + (ttBtnW - ttW) / 2 + "px";

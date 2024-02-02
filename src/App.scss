@@ -159,3 +159,17 @@ h2 {
     background-color: #e75113;
   }
 }
+
+.position-variant {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+  span {
+    margin: 4px;
+    flex-basis: calc(33.333333333333336% - 16px);
+    button {
+      width: 100%;
+      height: 80px;
+    }
+  }
+}

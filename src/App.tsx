@@ -44,47 +44,72 @@ function App() {
           </div>
         </div>
         <div className="gt-panel-body gt-center">
-          <Tooltip label="안녕하세요" position="left">
-            <button className="gt-button gt-button-primary">
-              position="left" 👈
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="top">
-            <button className="gt-button gt-button-secondary">
-              position="top" 👆
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="bottom">
-            <button className="gt-button gt-button-success">
-              position="bottom" 👇
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="right">
-            <button className="gt-button gt-button-danger">
-              position="right" 👉
-            </button>
-          </Tooltip>
+          <div className="position-variant">
+            <Tooltip label="안녕하세요" position="top">
+              <button className="gt-button gt-button-primary">
+                position="top" 👆
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="top-start">
+              <button className="gt-button gt-button-primary">
+                position="top-start" 👆👈
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="top-end">
+              <button className="gt-button gt-button-primary">
+                position="top-end" 👆👉
+              </button>
+            </Tooltip>
 
-          <Tooltip label="안녕하세요" position="top-start">
-            <button className="gt-button gt-button-primary">
-              position="top-start" 👆👈
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="top-end">
-            <button className="gt-button gt-button-secondary">
-              position="top-end" 👆👉
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="bottom-start">
-            <button className="gt-button gt-button-success">
-              position="bottom-start" 👇👈
-            </button>
-          </Tooltip>
-          <Tooltip label="안녕하세요" position="bottom-end">
-            <button className="gt-button gt-button-danger">
-              position="bottom-end" 👇👉
-            </button>
-          </Tooltip>
+            <Tooltip label="안녕하세요" position="right">
+              <button className="gt-button gt-button-secondary">
+                position="right" 👉
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="right-start">
+              <button className="gt-button gt-button-secondary">
+                position="right-start" 👉👆
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="right-end">
+              <button className="gt-button gt-button-secondary">
+                position="right-end" 👉👇
+              </button>
+            </Tooltip>
+
+            <Tooltip label="안녕하세요" position="bottom">
+              <button className="gt-button gt-button-success">
+                position="bottom" 👇
+              </button>
+            </Tooltip>
+
+            <Tooltip label="안녕하세요" position="bottom-start">
+              <button className="gt-button gt-button-success">
+                position="bottom-start" 👇👈
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="bottom-end">
+              <button className="gt-button gt-button-success">
+                position="bottom-end" 👇👉
+              </button>
+            </Tooltip>
+
+            <Tooltip label="안녕하세요" position="left">
+              <button className="gt-button gt-button-danger">
+                position="left" 👈
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="left-start">
+              <button className="gt-button gt-button-danger">
+                position="left-start" 👈👆
+              </button>
+            </Tooltip>
+            <Tooltip label="안녕하세요" position="left-end">
+              <button className="gt-button gt-button-danger">
+                position="left-end" 👈👇
+              </button>
+            </Tooltip>
+          </div>
         </div>
       </div>
 
