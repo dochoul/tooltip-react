@@ -218,7 +218,7 @@ export default function Tooltip({
         tt.style.left = ttBtnL + (ttBtnW - ttW) / 2 + "px";
         tt.style.top = ttBtnT - ttH - offset + "px";
         caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = `${ttH}px`;
+        caret.style.top = `${ttH - 0.5}px`;
         tt.classList.add("gt-transform-origin-bottom-center");
         break;
 
@@ -226,7 +226,7 @@ export default function Tooltip({
         tt.style.left = ttBtnL + "px";
         tt.style.top = ttBtnT - ttH - offset + "px";
         caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = ttH + "px";
+        caret.style.top = `${ttH - 0.5}px`;
         tt.classList.add("gt-transform-origin-bottom-center");
         break;
 
@@ -234,7 +234,7 @@ export default function Tooltip({
         tt.style.left = ttBtnL + Math.abs(ttBtnW - ttW) + "px";
         tt.style.top = ttBtnT - ttH - offset + "px";
         caret.style.left = ttW / 2 - caretW / 2 + "px";
-        caret.style.top = ttH + "px";
+        caret.style.top = `${ttH - 0.5}px`;
         tt.classList.add("gt-transform-origin-bottom-center");
         break;
       //* (END)위쪽 방향 툴팁들
