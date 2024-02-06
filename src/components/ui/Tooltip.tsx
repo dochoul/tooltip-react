@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import "./tooltip.scss";
+import { makeCaret } from "./MakeCaret";
 
 interface Props {
   label: string;
@@ -14,7 +15,7 @@ export default function Tooltip({
   label = "",
   position = "top",
   color = "#fff",
-  fontSize = "12px",
+  fontSize = "14px",
   background = "#585858",
   children,
 }: Props) {
@@ -23,75 +24,34 @@ export default function Tooltip({
   ) => {
     let ttBtn = event.currentTarget;
 
-    // 툴팁 Division 생성
+    //* 툴팁 Division 생성
     let tt = document.createElement("div");
     tt.classList.add("gt-tooltip");
     tt.innerHTML = label;
-
     if (document.querySelector(".gt-tooltip")) {
       document.body.removeChild(document.querySelector(".gt-tooltip")!);
     }
 
-    // 툴팁 Append
+    //* 툴팁 Append
     document.body.appendChild(tt);
-    tt.classList.add("gt-tooltip-show");
+    tt.classList.add("gt-tooltip-show"); //* 애니메이션을 위한 class name
 
-    // Caret(꼬다리) Division 생성
+    //* Caret(꼬다리) Division 생성하고 툴팁에 자식으로 붙인다
     let caret = document.createElement("div");
     caret.classList.add("gt-tooltip-caret");
     tt.appendChild(caret);
 
-    // 툴팁 위치
+    //* 옵션 초기화
+    tt.style.color = color; //* 툴팁 폰트 컬러 변경
+    tt.style.background = background; //* 툴팁 배경 컬러 변경
+    tt.style.fontSize = fontSize; //* 툴팁 폰트 크기 변경
+
+    // 툴팁 위치 설정
     setPosition(ttBtn, tt);
-  };
-
-  const removeTT = () => {
-    if (document.querySelector(".gt-tooltip")) {
-      let tt: HTMLDivElement = document.body.querySelector(".gt-tooltip")!;
-      tt.classList.add("gt-tooltip-hide");
-      tt.addEventListener("animationend", () => {
-        document.body.removeChild(document.body.querySelector(".gt-tooltip")!);
-      });
-    }
-  };
-
-  /* 꼬다리 만들기 */
-  const makeCaret = (caret: HTMLElement, position: string, bgColor: string) => {
-    const hasDash = position.includes("-");
-    if (hasDash) position = position.substring(0, position.indexOf("-"));
-
-    switch (position) {
-      case "left":
-        caret.style.borderWidth = "6px 0px 6px 6px";
-        caret.style.borderLeftColor = bgColor;
-        break;
-
-      case "right":
-        caret.style.borderWidth = "6px 6px 6px 0px";
-        caret.style.borderRightColor = bgColor;
-        break;
-
-      case "top":
-        caret.style.borderWidth = "6px 6px 0px 6px";
-        caret.style.borderTopColor = bgColor;
-        break;
-
-      case "bottom":
-        caret.style.borderWidth = "0px 6px 6px 6px";
-        caret.style.borderBottomColor = bgColor;
-        break;
-
-      default:
-        caret.style.borderWidth = "6px 6px 0px 6px";
-        caret.style.borderTopColor = bgColor;
-        break;
-    }
-    return caret;
   };
 
   /* 방향에 따라 툴팁 위치 변경 */
   const setPosition = (ttBtn: HTMLElement, tt: HTMLElement) => {
-    let size;
     let ttBtnW;
     let ttBtnH;
     let ttBtnL;
@@ -110,18 +70,6 @@ export default function Tooltip({
       background
     );
 
-    //* 툴팁 폰트 컬러 변경
-    tt.style.color = color;
-
-    //* 툴팁 폰트 사이즈 변경
-    size = fontSize;
-
-    //* 툴팁 배경 컬러 변경
-    tt.style.background = background;
-
-    //* 툴팁 폰트 크기 변경
-    tt.style.fontSize = size;
-
     // 툴팁 요소: 너비, 높이, 좌표
     ttBtnW = Math.ceil(ttBtn.offsetWidth);
     ttBtnH = Math.ceil(ttBtn.offsetHeight);
@@ -129,8 +77,6 @@ export default function Tooltip({
     ttBtnT = Math.ceil(window.pageYOffset + ttBtn.getBoundingClientRect().top);
     ttW = Math.ceil(tt.offsetWidth);
     ttH = Math.ceil(tt.offsetHeight);
-    // ttL = Math.ceil(tt.getBoundingClientRect().left);
-    // ttT = Math.ceil(tt.getBoundingClientRect().top);
     caretW = Math.ceil(caret.offsetWidth);
     caretH = Math.ceil(caret.offsetHeight);
 
@@ -246,6 +192,17 @@ export default function Tooltip({
         caret.style.top = ttH + "px";
         tt.classList.add("gt-transform-origin-bottom-center");
         break;
+    }
+  };
+
+  //* 툴팁 삭제 *//
+  const removeTT = () => {
+    if (document.querySelector(".gt-tooltip")) {
+      let tt: HTMLDivElement = document.body.querySelector(".gt-tooltip")!;
+      tt.classList.add("gt-tooltip-hide");
+      tt.addEventListener("animationend", () => {
+        document.body.removeChild(document.body.querySelector(".gt-tooltip")!);
+      });
     }
   };
 
