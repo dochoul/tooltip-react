@@ -1,9 +1,16 @@
-export const makeCaret = (
-  caret: HTMLElement,
+//* 꼬다리 만들기 *//
+export const MakeCaret = (
+  className: string,
   position: string,
   background: string
 ) => {
-  const hasDash = position.includes("-");
+  let caret;
+  let hasDash;
+
+  caret = document.createElement("div");
+  caret.classList.add(className);
+
+  hasDash = position.includes("-");
   if (hasDash) position = position.substring(0, position.indexOf("-"));
 
   switch (position) {

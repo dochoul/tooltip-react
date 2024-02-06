@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import "./tooltip.scss";
-import { makeCaret } from "./MakeCaret";
+import { MakeCaret } from "./MakeCaret";
 
 interface Props {
   label: string;
@@ -22,10 +22,10 @@ export default function Tooltip({
   const makeTT = (
     event: React.MouseEvent<HTMLSpanElement> | React.FocusEvent<HTMLSpanElement>
   ) => {
-    let ttBtn = event.currentTarget;
+    const ttBtn = event.currentTarget;
 
     //* 툴팁 Division 생성
-    let tt = document.createElement("div");
+    const tt = document.createElement("div");
     tt.classList.add("gt-tooltip");
     tt.innerHTML = label;
     if (document.querySelector(".gt-tooltip")) {
@@ -36,9 +36,8 @@ export default function Tooltip({
     document.body.appendChild(tt);
     tt.classList.add("gt-tooltip-show"); //* 애니메이션을 위한 class name
 
-    //* Caret(꼬다리) Division 생성하고 툴팁에 자식으로 붙인다
-    let caret = document.createElement("div");
-    caret.classList.add("gt-tooltip-caret");
+    //* Caret(꼬다리) Division 생성하고 툴팁에 자식으로 붙인다.
+    const caret = MakeCaret("gt-tooltip-caret", position, background);
     tt.appendChild(caret);
 
     //* 옵션 초기화
@@ -47,28 +46,24 @@ export default function Tooltip({
     tt.style.fontSize = fontSize; //* 툴팁 폰트 크기 변경
 
     // 툴팁 위치 설정
-    setPosition(ttBtn, tt);
+    setPosition(ttBtn, tt, caret);
   };
 
   /* 방향에 따라 툴팁 위치 변경 */
-  const setPosition = (ttBtn: HTMLElement, tt: HTMLElement) => {
+  const setPosition = (
+    ttBtn: HTMLElement,
+    tt: HTMLDivElement,
+    caret: HTMLDivElement
+  ) => {
     let ttBtnW;
     let ttBtnH;
     let ttBtnL;
     let ttBtnT;
     let ttW;
     let ttH;
-    let caret;
     let caretW;
     let caretH;
     let offset = 10;
-
-    //* Caret(꼬다리)
-    caret = makeCaret(
-      tt.querySelector(".gt-tooltip-caret")!,
-      position,
-      background
-    );
 
     // 툴팁 요소: 너비, 높이, 좌표
     ttBtnW = Math.ceil(ttBtn.offsetWidth);
