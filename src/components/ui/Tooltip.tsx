@@ -8,6 +8,7 @@ interface Props {
   color?: string;
   fontSize?: string;
   background?: string;
+  offset?: number;
   children: ReactNode;
 }
 
@@ -17,6 +18,7 @@ export default function Tooltip({
   color = "#fff",
   fontSize = "14px",
   background = "#585858",
+  offset = 10,
   children,
 }: Props) {
   const makeTT = (
@@ -63,7 +65,6 @@ export default function Tooltip({
     let ttH;
     let caretW;
     let caretH;
-    let offset = 10;
 
     // 툴팁 요소: 너비, 높이, 좌표
     ttBtnW = Math.ceil(ttBtn.offsetWidth);

@@ -211,6 +211,35 @@ function App() {
           </Tooltip>
         </div>
       </div>
+
+      <h2 className="anchor">Offset</h2>
+      <div className="gt-panel">
+        <div className="gt-panel-header">
+          <div className="circles">
+            <span className="circle circle-red"></span>
+            <span className="circle circle-yellow"></span>
+            <span className="circle circle-green"></span>
+          </div>
+        </div>
+        <div className="gt-panel-body gt-center">
+          <Tooltip label="안녕하세요" offset={10}>
+            <button className="gt-button gt-button-primary">
+              offset="10"(default)
+            </button>
+          </Tooltip>
+          <Tooltip label="안녕하세요" offset={20}>
+            <button className="gt-button gt-button-secondary">
+              offset="20"
+            </button>
+          </Tooltip>
+          <Tooltip label="안녕하세요" offset={30}>
+            <button className="gt-button gt-button-success">offset="30"</button>
+          </Tooltip>
+          <Tooltip label="안녕하세요" offset={40}>
+            <button className="gt-button gt-button-danger">offset="40"</button>
+          </Tooltip>
+        </div>
+      </div>
     </div>
   );
 }
