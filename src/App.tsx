@@ -16,6 +16,7 @@ function App() {
           (https://github.com/dochoul/tooltip-react)
         </a>
       </div>
+
       <h2 className="anchor">Default</h2>
       <div className="gt-panel">
         <div className="gt-panel-header">
@@ -27,6 +28,24 @@ function App() {
         </div>
         <div className="gt-panel-body gt-center">
           <Tooltip label="안녕하세요">
+            <button className="gt-button gt-button-primary">
+              툴팁 버튼 😀
+            </button>
+          </Tooltip>
+        </div>
+      </div>
+
+      <h2 className="anchor">HTML Content</h2>
+      <div className="gt-panel">
+        <div className="gt-panel-header">
+          <div className="circles">
+            <span className="circle circle-red"></span>
+            <span className="circle circle-yellow"></span>
+            <span className="circle circle-green"></span>
+          </div>
+        </div>
+        <div className="gt-panel-body gt-center">
+          <Tooltip label="안녕하세요<br/>안녕하세요<br/><strong>안녕하세요</strong><br/><span style='color:skyblue'>안녕하세요</span>">
             <button className="gt-button gt-button-primary">
               툴팁 버튼 😀
             </button>
