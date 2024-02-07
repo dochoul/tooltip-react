@@ -6,7 +6,7 @@ interface Props {
   label: string;
   position?: string;
   color?: string;
-  fontSize?: string;
+  fontSize?: string | number;
   background?: string;
   offset?: number;
   children: ReactNode;
@@ -16,7 +16,7 @@ export default function Tooltip({
   label = "",
   position = "top",
   color = "#fff",
-  fontSize = "14px",
+  fontSize = "14",
   background = "#585858",
   offset = 10,
   children,
@@ -45,7 +45,7 @@ export default function Tooltip({
     //* 옵션 초기화
     tt.style.color = color; //* 툴팁 폰트 컬러 변경
     tt.style.background = background; //* 툴팁 배경 컬러 변경
-    tt.style.fontSize = fontSize; //* 툴팁 폰트 크기 변경
+    tt.style.fontSize = `${fontSize}px`; //* 툴팁 폰트 크기 변경
 
     // 툴팁 위치 설정
     setPosition(ttBtn, tt, caret);

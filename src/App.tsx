@@ -208,24 +208,24 @@ function App() {
           </div>
         </div>
         <div className="gt-panel-body gt-center">
-          <Tooltip label="안녕하세요" fontSize="20px">
+          <Tooltip label="안녕하세요" fontSize="20">
             <button className="gt-button gt-button-primary">
-              fontSize="20px"
+              fontSize="20"
             </button>
           </Tooltip>
-          <Tooltip label="안녕하세요" fontSize="30px">
+          <Tooltip label="안녕하세요" fontSize="30">
             <button className="gt-button gt-button-secondary">
-              fontSize="30px"
+              fontSize="30"
             </button>
           </Tooltip>
-          <Tooltip label="안녕하세요" fontSize="40px">
+          <Tooltip label="안녕하세요" fontSize="40">
             <button className="gt-button gt-button-success">
-              fontSize="40px"
+              fontSize="40"
             </button>
           </Tooltip>
-          <Tooltip label="안녕하세요" fontSize="50px">
+          <Tooltip label="안녕하세요" fontSize="50">
             <button className="gt-button gt-button-danger">
-              fontSize="50px"
+              fontSize="50"
             </button>
           </Tooltip>
         </div>
