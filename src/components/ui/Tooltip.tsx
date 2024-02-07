@@ -207,8 +207,9 @@ export default function Tooltip({
       style={{ display: "inline-flex", cursor: "pointer" }}
       onMouseOver={makeTT}
       onMouseLeave={removeTT}
-      onFocus={makeTT}
-      onBlur={removeTT}
+      //* 아래 코드 넣으면 마우스 클릭 시 깜박거림현상
+      // onFocus={makeTT}
+      // onBlur={removeTT}
     >
       {children}
     </span>
