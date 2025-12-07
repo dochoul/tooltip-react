@@ -1,46 +1,121 @@
-# Getting Started with Create React App
+# Tooltip React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React와 TypeScript로 만든 커스터마이징 가능한 툴팁 컴포넌트 라이브러리입니다.
 
-## Available Scripts
+## 특징
 
-In the project directory, you can run:
+- 🎯 다양한 위치 옵션 (top, bottom, left, right 및 각각의 start/end 변형)
+- 🎨 완전한 커스터마이징 (색상, 폰트 크기, 배경색, 간격)
+- 📝 HTML 콘텐츠 지원
+- ✨ 부드러운 애니메이션 효과
+- 🔧 TypeScript 지원
 
-### `npm start`
+## 설치
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 사용법
 
-### `npm test`
+### 기본 사용
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```tsx
+import Tooltip from "./components/ui/Tooltip";
 
-### `npm run build`
+function App() {
+  return (
+    <Tooltip label="안녕하세요">
+      <button>호버하세요</button>
+    </Tooltip>
+  );
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### HTML 콘텐츠
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```tsx
+<Tooltip label="안녕하세요<br/>안녕하세요<br/><strong>안녕하세요</strong>">
+  <button>HTML 툴팁</button>
+</Tooltip>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 위치 설정
 
-### `npm run eject`
+```tsx
+<Tooltip label="안녕하세요" position="top">
+  <button>위쪽 툴팁</button>
+</Tooltip>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<Tooltip label="안녕하세요" position="bottom-start">
+  <button>아래쪽 시작 툴팁</button>
+</Tooltip>
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**사용 가능한 위치 옵션:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `top`, `top-start`, `top-end`
+- `bottom`, `bottom-start`, `bottom-end`
+- `left`, `left-start`, `left-end`
+- `right`, `right-start`, `right-end`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 커스터마이징
 
-## Learn More
+```tsx
+<Tooltip
+  label="안녕하세요"
+  position="top"
+  color="#fff"
+  background="#585858"
+  fontSize={16}
+  offset={10}
+>
+  <button>커스텀 툴팁</button>
+</Tooltip>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Props
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Prop         | Type               | Default     | Description                                                   |
+| ------------ | ------------------ | ----------- | ------------------------------------------------------------- |
+| `label`      | `string`           | `""`        | 툴팁에 표시할 텍스트 (HTML 지원)                              |
+| `position`   | `string`           | `"top"`     | 툴팁 위치 (top, bottom, left, right 및 각각의 start/end 변형) |
+| `color`      | `string`           | `"#fff"`    | 툴팁 텍스트 색상                                              |
+| `fontSize`   | `string \| number` | `"14"`      | 툴팁 폰트 크기 (px)                                           |
+| `background` | `string`           | `"#585858"` | 툴팁 배경색                                                   |
+| `offset`     | `number`           | `10`        | 툴팁과 요소 사이의 간격 (px)                                  |
+| `children`   | `ReactNode`        | -           | 툴팁이 적용될 요소 (필수)                                     |
+
+## 개발
+
+### 개발 서버 실행
+
+```bash
+npm run dev
+```
+
+개발 서버는 [http://localhost:3000](http://localhost:3000)에서 실행됩니다.
+
+### 빌드
+
+```bash
+npm run build
+```
+
+프로덕션 빌드를 생성합니다.
+
+### 테스트
+
+```bash
+npm test
+```
+
+테스트를 실행합니다.
+
+## 라이선스
+
+이 프로젝트는 개인 프로젝트입니다.
+
+## 링크
+
+- [GitHub Repository](https://github.com/dochoul/tooltip-react)
